@@ -1,0 +1,23 @@
+{
+    "name": "fobiaweb/php-helper-lib",
+    "type": "library",
+    "description": "",
+    "homepage": "https://github.com/fobiaweb/php-helper-lib",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "See contributors",
+            "homepage": "https://github.com/fobiaweb/php-helper-lib/graphs/contributors"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/fobiaweb/php-helper-lib/issues"
+    },
+    "require": {
+        "php": ">=5.3.0"
+    },
+    "autoload": {
+        "classmap": [ "." ]
+    },
+    "target-dir": "Fobia/lib"
+}
