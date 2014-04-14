@@ -1,7 +1,7 @@
 <?php
 /**
- * @author     Tyurin D. <fobia3d@gmail.com>
- * @copyright  Copyright (c) 2013 AC Software
+ * @author     Dmitriy Tyurin <fobia3d@gmail.com>
+ * @copyright  Copyright (c) 2014 Dmitriy Tyurin
  */
 
 /**

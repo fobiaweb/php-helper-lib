@@ -1,14 +1,11 @@
 <?php
 /**
- * @author     Tyurin D. <fobia3d@gmail.com>
- * @copyright  Copyright (c) 2013 AC Software
+ * @author     Dmitriy Tyurin <fobia3d@gmail.com>
+ * @copyright  Copyright (c) 2014 Dmitriy Tyurin
  */
-
 
 /**
  * DateTime with serialization and timestamp support for PHP 5.2.
- *
- * @author     David Grudl
  */
 class CDateTime extends \DateTime
 {
@@ -30,9 +27,8 @@ class CDateTime extends \DateTime
 
     /** average year in seconds */
     const YEAR = 31557600;
-
     const ATOM = 'Y-m-d H:i:s';
-    
+
     /**
      * DateTime object factory.
      * @param  string|int|\DateTime
@@ -52,7 +48,7 @@ class CDateTime extends \DateTime
         }
     }
 
-    public function __toString()
+    public function toString()
     {
         return $this->format('Y-m-d H:i:s');
     }
@@ -61,5 +57,10 @@ class CDateTime extends \DateTime
     {
         $dolly = clone $this;
         return $modify ? $dolly->modify($modify) : $dolly;
+    }
+
+    public function __toString()
+    {
+        return $this->toString();
     }
 }
