@@ -41,7 +41,7 @@ if (!defined("TIME_START")) {
     define("TIME_START", $_SERVER["REQUEST_TIME_FLOAT"]);
 }
 defined('DS') or define('DS', DIRECTORY_SEPARATOR);
-define('BR') or define('BR', '<br />' . PHP_EOL);
+defined('BR') or define('BR', '<br />' . PHP_EOL);
 
 /** Указывае что скрипт был запущен через консоль */
 defined('IS_CLI') or define('IS_CLI', !isset($_SERVER['HTTP_HOST']));
