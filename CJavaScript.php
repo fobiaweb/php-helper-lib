@@ -82,8 +82,7 @@ class CJavaScript
             return self::encode(get_object_vars($value));
         } else if (is_array($value)) {
             $es = array();
-            if (($n  = count($value)) > 0 && array_keys($value) !== range(0,
-                                                                          $n - 1)) {
+            if (($n  = count($value)) > 0 && array_keys($value) !== range(0, $n - 1)) {
                 foreach ($value as $k => $v) {
                     $es[] = '"' . self::quote($k) . '":' . self::encode($v);
                 }

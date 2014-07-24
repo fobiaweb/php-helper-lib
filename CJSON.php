@@ -211,8 +211,7 @@ class CJSON
                         case (($ord_var_c & 0xF0) == 0xE0):
                             // characters U-00000800 - U-0000FFFF, mask 1110XXXX
                             // see http://www.cl.cam.ac.uk/~mgk25/unicode.html#utf-8
-                            $char  = pack('C*', $ord_var_c, ord($var{$c + 1}),
-                                                                ord($var{$c + 2}));
+                            $char  = pack('C*', $ord_var_c, ord($var{$c + 1}), ord($var{$c + 2}));
                             $c+=2;
                             $utf16 = self::utf8ToUTF16BE($char);
                             $ascii .= sprintf('\u%04s', bin2hex($utf16));
@@ -222,8 +221,8 @@ class CJSON
                             // characters U-00010000 - U-001FFFFF, mask 11110XXX
                             // see http://www.cl.cam.ac.uk/~mgk25/unicode.html#utf-8
                             $char  = pack('C*', $ord_var_c, ord($var{$c + 1}),
-                                                                ord($var{$c + 2}),
-                                                                    ord($var{$c + 3}));
+                                                            ord($var{$c + 2}),
+                                                            ord($var{$c + 3}));
                             $c+=3;
                             $utf16 = self::utf8ToUTF16BE($char);
                             $ascii .= sprintf('\u%04s', bin2hex($utf16));
@@ -233,9 +232,9 @@ class CJSON
                             // characters U-00200000 - U-03FFFFFF, mask 111110XX
                             // see http://www.cl.cam.ac.uk/~mgk25/unicode.html#utf-8
                             $char  = pack('C*', $ord_var_c, ord($var{$c + 1}),
-                                                                ord($var{$c + 2}),
-                                                                    ord($var{$c + 3}),
-                                                                        ord($var{$c + 4}));
+                                                            ord($var{$c + 2}),
+                                                            ord($var{$c + 3}),
+                                                            ord($var{$c + 4}));
                             $c+=4;
                             $utf16 = self::utf8ToUTF16BE($char);
                             $ascii .= sprintf('\u%04s', bin2hex($utf16));
@@ -245,10 +244,10 @@ class CJSON
                             // characters U-04000000 - U-7FFFFFFF, mask 1111110X
                             // see http://www.cl.cam.ac.uk/~mgk25/unicode.html#utf-8
                             $char  = pack('C*', $ord_var_c, ord($var{$c + 1}),
-                                                                ord($var{$c + 2}),
-                                                                    ord($var{$c + 3}),
-                                                                        ord($var{$c + 4}),
-                                                                            ord($var{$c + 5}));
+                                                            ord($var{$c + 2}),
+                                                            ord($var{$c + 3}),
+                                                            ord($var{$c + 4}),
+                                                            ord($var{$c + 5}));
                             $c+=5;
                             $utf16 = self::utf8ToUTF16BE($char);
                             $ascii .= sprintf('\u%04s', bin2hex($utf16));
@@ -278,34 +277,30 @@ class CJSON
                  */
 
                 // treat as a JSON object
-                if (is_array($var) && count($var) && (array_keys($var) !== range(0,
-                                                                                 sizeof($var) - 1))) {
-                    return '{' .
-                            join(',',
-                                 \array_map(array(__CLASS__, 'nameValue'),
-                                            \array_keys($var),
-                                                        \array_values($var)))
-                            . '}';
+                if (is_array($var) && count($var) && (array_keys($var) !== range(0, sizeof($var) - 1))) {
+                    return '{'
+                        . join(',', \array_map(array(__CLASS__, 'nameValue'), \array_keys($var), \array_values($var)))
+                        . '}';
                 }
 
                 // treat it like a regular array
-                return '[' . join(',',
-                                  \array_map(array(__CLASS__, 'encode'), $var)) . ']';
+                return '['
+                     . join(',', \array_map(array(__CLASS__, 'encode'), $var))
+                     . ']';
 
             case 'object':
                 if ($var instanceof \Traversable) {
                     $vars     = array();
-                    foreach ($var as $k => $v)
+                    foreach ($var as $k => $v) {
                         $vars[$k] = $v;
+                    }
                 }
-                else
+                else {
                     $vars = get_object_vars($var);
-                return '{' .
-                        \join(',',
-                              \array_map(array(__CLASS__, 'nameValue'),
-                                         \array_keys($vars),
-                                                     \array_values($vars)))
-                        . '}';
+                }
+                return '{'
+                    . \join(',', \array_map(array(__CLASS__, 'nameValue'), \array_keys($vars), \array_values($vars)))
+                    . '}';
 
             default:
                 return '';
@@ -360,8 +355,9 @@ class CJSON
      */
     public static function decode($str, $useArray = true)
     {
-        if (function_exists('json_decode'))
+        if (function_exists('json_decode')) {
             return json_decode($str, $useArray);
+        }
 
         $str = self::reduceString($str);
 
@@ -478,8 +474,7 @@ class CJSON
                     }
 
                     return $utf8;
-                } elseif (preg_match('/^\[.*\]$/s', $str) || preg_match('/^\{.*\}$/s',
-                                                                        $str)) {
+                } elseif (preg_match('/^\[.*\]$/s', $str) || preg_match('/^\{.*\}$/s', $str)) {
                     // array, or object notation
 
                     if ($str{0} == '[') {
@@ -496,9 +491,9 @@ class CJSON
                     }
 
                     array_push($stk,
-                               array('what'  => self::JSON_SLICE,
-                        'where' => 0,
-                        'delim' => false));
+                        array('what'  => self::JSON_SLICE,
+                              'where' => 0,
+                              'delim' => false));
 
                     $chrs = substr($str, 1, -1);
                     $chrs = self::reduceString($chrs);
@@ -523,11 +518,8 @@ class CJSON
                         if (($c == $strlen_chrs) || (($chrs{$c} == ',') && ($top['what'] == self::JSON_SLICE))) {
                             // found a comma that is not inside a string, array, etc.,
                             // OR we've reached the end of the character list
-                            $slice = substr($chrs, $top['where'],
-                                            ($c - $top['where']));
-                            array_push($stk,
-                                       array('what'  => self::JSON_SLICE, 'where' => ($c + 1),
-                                'delim' => false));
+                            $slice = substr($chrs, $top['where'], ($c - $top['where']));
+                            array_push($stk, array('what'  => self::JSON_SLICE, 'where' => ($c + 1), 'delim' => false));
                             //print("Found split at {$c}: ".substr($chrs, $top['where'], (1 + $c - $top['where']))."\n");
 
                             if (reset($stk) == self::JSON_IN_ARR) {
@@ -549,8 +541,7 @@ class CJSON
                                     } else {
                                         $obj->$key = $val;
                                     }
-                                } elseif (preg_match('/^\s*(\w+)\s*:\s*(\S.*),?$/Uis',
-                                                     $slice, $parts)) {
+                                } elseif (preg_match('/^\s*(\w+)\s*:\s*(\S.*),?$/Uis', $slice, $parts)) {
                                     // name:value pair, where name is unquoted
                                     $key = $parts[1];
                                     $val = self::decode($parts[2], $useArray);
@@ -564,9 +555,7 @@ class CJSON
                             }
                         } elseif ((($chrs{$c} == '"') || ($chrs{$c} == "'")) && ($top['what'] != self::JSON_IN_STR)) {
                             // found a quote, and we are not inside a string
-                            array_push($stk,
-                                       array('what'  => self::JSON_IN_STR, 'where' => $c,
-                                'delim' => $chrs{$c}));
+                            array_push($stk, array('what'  => self::JSON_IN_STR, 'where' => $c, 'delim' => $chrs{$c}));
                             //print("Found start of string at {$c}\n");
                         } elseif (($chrs{$c} == $top['delim']) &&
                                 ($top['what'] == self::JSON_IN_STR) &&
@@ -575,40 +564,25 @@ class CJSON
                             // found a quote, we're in a string, and it's not escaped
                             array_pop($stk);
                             //print("Found end of string at {$c}: ".substr($chrs, $top['where'], (1 + 1 + $c - $top['where']))."\n");
-                        } elseif (($chrs{$c} == '[') &&
-                                in_array($top['what'],
-                                         array(self::JSON_SLICE, self::JSON_IN_ARR,
-                                    self::JSON_IN_OBJ))) {
+                        } elseif (($chrs{$c} == '[') && in_array($top['what'], array(self::JSON_SLICE, self::JSON_IN_ARR, self::JSON_IN_OBJ))) {
                             // found a left-bracket, and we are in an array, object, or slice
-                            array_push($stk,
-                                       array('what'  => self::JSON_IN_ARR, 'where' => $c,
-                                'delim' => false));
+                            array_push($stk, array('what'  => self::JSON_IN_ARR, 'where' => $c, 'delim' => false));
                             //print("Found start of array at {$c}\n");
                         } elseif (($chrs{$c} == ']') && ($top['what'] == self::JSON_IN_ARR)) {
                             // found a right-bracket, and we're in an array
                             array_pop($stk);
                             //print("Found end of array at {$c}: ".substr($chrs, $top['where'], (1 + $c - $top['where']))."\n");
-                        } elseif (($chrs{$c} == '{') &&
-                                in_array($top['what'],
-                                         array(self::JSON_SLICE, self::JSON_IN_ARR,
-                                    self::JSON_IN_OBJ))) {
+                        } elseif (($chrs{$c} == '{') && in_array($top['what'], array(self::JSON_SLICE, self::JSON_IN_ARR, self::JSON_IN_OBJ))) {
                             // found a left-brace, and we are in an array, object, or slice
-                            array_push($stk,
-                                       array('what'  => self::JSON_IN_OBJ, 'where' => $c,
-                                'delim' => false));
+                            array_push($stk, array('what'  => self::JSON_IN_OBJ, 'where' => $c, 'delim' => false));
                             //print("Found start of object at {$c}\n");
                         } elseif (($chrs{$c} == '}') && ($top['what'] == self::JSON_IN_OBJ)) {
                             // found a right-brace, and we're in an object
                             array_pop($stk);
                             //print("Found end of object at {$c}: ".substr($chrs, $top['where'], (1 + $c - $top['where']))."\n");
-                        } elseif (($substr_chrs_c_2 == '/*') &&
-                                in_array($top['what'],
-                                         array(self::JSON_SLICE, self::JSON_IN_ARR,
-                                    self::JSON_IN_OBJ))) {
+                        } elseif (($substr_chrs_c_2 == '/*') && in_array($top['what'], array(self::JSON_SLICE, self::JSON_IN_ARR, self::JSON_IN_OBJ))) {
                             // found a comment start, and we are in an array, object, or slice
-                            array_push($stk,
-                                       array('what'  => self::JSON_IN_CMT, 'where' => $c,
-                                'delim' => false));
+                            array_push($stk, array('what'  => self::JSON_IN_CMT, 'where' => $c, 'delim' => false));
                             $c ++;
                             //print("Found start of comment at {$c}\n");
                         } elseif (($substr_chrs_c_2 == '*/') && ($top['what'] == self::JSON_IN_CMT)) {
@@ -616,8 +590,9 @@ class CJSON
                             array_pop($stk);
                             $c ++;
 
-                            for ($i = $top['where']; $i <= $c;  ++ $i)
+                            for ($i = $top['where']; $i <= $c;  ++ $i) {
                                 $chrs = substr_replace($chrs, ' ', $i, 1);
+                            }
 
                             //print("Found end of comment at {$c}: ".substr($chrs, $top['where'], (1 + $c - $top['where']))."\n");
                         }
@@ -649,11 +624,13 @@ class CJSON
 
         for ($i = 0; $i < strlen($str); $i ++ ) {
             $thisValue = ord($str[$i]);
-            if ($thisValue < 128)
+            if ($thisValue < 128) {
                 $unicode[] = $thisValue;
+            }
             else {
-                if (count($values) == 0)
+                if (count($values) == 0) {
                     $lookingFor = ( $thisValue < 224 ) ? 2 : 3;
+                }
                 $values[]   = $thisValue;
                 if (count($values) == $lookingFor) {
                     $number     = ( $lookingFor == 3 ) ?
@@ -705,12 +682,14 @@ class CJSON
     protected static function utf8ToUTF16BE(&$str, $bom = false)
     {
         $out = $bom ? "\xFE\xFF" : '';
-        if (function_exists('mb_convert_encoding'))
+        if (function_exists('mb_convert_encoding')) {
             return $out . mb_convert_encoding($str, 'UTF-16BE', 'UTF-8');
+        }
 
         $uni = self::utf8ToUnicode($str);
-        foreach ($uni as $cp)
+        foreach ($uni as $cp) {
             $out .= pack('n', $cp);
+        }
         return $out;
     }
 
