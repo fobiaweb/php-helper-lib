@@ -4,8 +4,12 @@
  * @copyright  Copyright (c) 2014 Dmitriy Tyurin
  */
 
+namespace Fobia\Helpers;
+
 /**
  * PHP callback encapsulation.
+ *
+ * @package Fobia.Helpers
  */
 final class CCallback
 {
@@ -25,6 +29,7 @@ final class CCallback
     }
 
     /**
+     * @internal
      * @param  mixed   class, object, callable
      * @param  string  method
      */
@@ -45,6 +50,7 @@ final class CCallback
 
     /**
      * Invokes callback. Do not call directly.
+     *
      * @return mixed
      */
     public function __invoke()
@@ -58,6 +64,7 @@ final class CCallback
 
     /**
      * Invokes callback.
+     *
      * @return mixed
      */
     public function invoke()
@@ -71,6 +78,7 @@ final class CCallback
 
     /**
      * Verifies that callback can be called.
+     *
      * @return bool
      */
     public function isCallable()
@@ -79,6 +87,7 @@ final class CCallback
     }
 
     /**
+     * @internal
      * @return string
      */
     public function __toString()

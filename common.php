@@ -233,11 +233,9 @@ function sortByIndex(&$array, $sortby, $keys)
 /**
  * Смерживание масивов
  *
- * @param array First array
- * @param array Second array
- * @param array Third array
- * @param array Etc...
- * @return array All array parameters merged into one
+ * @param array $a First array
+ * @param array $... Second array
+ * @return array Все параметры массива объединены в один
  */
 function am($a)
 {

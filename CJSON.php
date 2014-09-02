@@ -49,6 +49,7 @@
  * @link		http://pear.php.net/pepr/pepr-proposal-show.php?id=198
  */
 
+namespace Fobia\Helpers;
 
 /**
  * CJSON converts PHP data to and from JSON format.
@@ -56,7 +57,8 @@
  * @author	 Michal Migurski <mike-json@teczno.com>
  * @author	 Matt Knapp <mdknapp[at]gmail[dot]com>
  * @author	 Brett Stimmerman <brettstimmerman[at]gmail[dot]com>
- * @package PEAR
+ *
+ * @package Fobia.Helpers
  */
 class CJSON
 {

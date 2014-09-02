@@ -8,6 +8,7 @@
  * @license http://www.yiiframework.com/license/
  */
 
+namespace Fobia\Helpers;
 
 /**
  * VarDumper is intended to replace the buggy PHP function var_dump and print_r.
@@ -19,7 +20,8 @@
  * <pre>
  * CVarDumper::dump($var);
  * </pre>
- * @package Yii
+ * 
+ * @package Fobia.Helpers
  */
 class CVarDumper
 {

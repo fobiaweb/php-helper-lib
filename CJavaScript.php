@@ -8,12 +8,13 @@
  * @license http://www.yiiframework.com/license/
  */
 
+namespace Fobia\Helpers;
 
 /**
  * CJavaScript is a helper class containing JavaScript-related handling functions.
  *
  * @author Qiang Xue <qiang.xue@gmail.com>
- * @package Yii
+ * @package Fobia.Helpers
  */
 class CJavaScript
 {

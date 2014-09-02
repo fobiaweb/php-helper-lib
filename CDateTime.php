@@ -4,8 +4,12 @@
  * @copyright  Copyright (c) 2014 Dmitriy Tyurin
  */
 
+namespace Fobia\Helpers;
+
 /**
  * DateTime with serialization and timestamp support for PHP 5.2.
+ *
+ * @package Fobia.Helpers
  */
 class CDateTime extends \DateTime
 {
