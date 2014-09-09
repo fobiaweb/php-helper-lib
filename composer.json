@@ -6,8 +6,10 @@
         "php": ">=5.3.0"
     },
     "autoload": {
-        "classmap": [ "." ],
-        "files": [ "common.php" ]
+        "psr-0": {
+            "Fobia\\Helpers\\": "."
+        },
+        "files": [ "functions.php" ]
     },
-    "target-dir": "Fobia/lib"
+    "target-dir": "Fobia/Helpers"
 }
