@@ -16,11 +16,11 @@ namespace Fobia\Helpers;
  * object structure. It also has a recursive depth control to avoid indefinite
  * recursive display of some peculiar variables.
  *
- * CVarDumper can be used as follows,
- * <pre>
- * CVarDumper::dump($var);
- * </pre>
- * 
+ * VarDumper can be used as follows,
+ * <code>
+ * Fobia\Helpers\VarDumper::dump($var);
+ * </code>
+ *
  * @package Fobia.Helpers
  */
 class VarDumper

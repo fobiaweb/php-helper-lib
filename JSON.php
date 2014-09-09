@@ -52,7 +52,7 @@
 namespace Fobia\Helpers;
 
 /**
- * CJSON converts PHP data to and from JSON format.
+ * JSON converts PHP data to and from JSON format.
  *
  * @author	 Michal Migurski <mike-json@teczno.com>
  * @author	 Matt Knapp <mdknapp[at]gmail[dot]com>
