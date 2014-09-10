@@ -11,7 +11,7 @@
 namespace Fobia\Helpers;
 
 /**
- * JavaScript is a helper class containing JavaScript-related handling functions.
+ * JavaScript является вспомогательным классом, содержащий JavaScript-функции, связанные обработки.
  *
  * @author Qiang Xue <qiang.xue@gmail.com>
  * @package Fobia.Helpers

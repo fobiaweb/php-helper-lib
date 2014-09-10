@@ -11,14 +11,16 @@
 namespace Fobia\Helpers;
 
 /**
- * VarDumper is intended to replace the buggy PHP function var_dump and print_r.
- * It can correctly identify the recursively referenced objects in a complex
- * object structure. It also has a recursive depth control to avoid indefinite
- * recursive display of some peculiar variables.
+ * VarDumper призван заменить функцию var_dump и print_r.
  *
- * VarDumper can be used as follows,
+ * Он может правильно определить рекурсивно ссылающееся объекты в сложном объекте структуры.
+ * Она также имеет рекурсивный контроль глубины, чтобы избежать бесконечных рекурсий.
+ *
+ * VarDumper может быть использован следующим образом,
  * <code>
  * Fobia\Helpers\VarDumper::dump($var);
+ * Fobia\Helpers\VarDumper::dump($var, 10, 'class');
+ * $s = dumpAsString($var, 15);
  * </code>
  *
  * @package Fobia.Helpers
@@ -31,12 +33,13 @@ class VarDumper
     private static $_depth;
 
     /**
-     * Displays a variable.
-     * This method achieves the similar functionality as var_dump and print_r
-     * but is more robust when handling complex objects such as Yii controllers.
-     * @param mixed $var variable to be dumped
-     * @param integer $depth maximum depth that the dumper should go into the variable. Defaults to 10.
-     * @param boolean $highlight whether the result should be syntax-highlighted
+     * Отображает переменную.
+     * Этот метод позволяет достичь аналогичного функциональность как var_dump и print_r
+     *
+     * @param mixed $var                Переменная, подлежащих дампу
+     * @param integer        $depth     Максимальная глубина, что даипер должен пройти в переменной.
+     *                                  По умолчанию 10.
+     * @param boolean|string $highlight Подсвечивать результат или установить класс тегам
      */
     public static function dump($var, $depth = 10, $highlight = true)
     {
@@ -44,13 +47,14 @@ class VarDumper
     }
 
     /**
-     * Dumps a variable in terms of a string.
-     * This method achieves the similar functionality as var_dump and print_r
-     * but is more robust when handling complex objects such as Yii controllers.
-     * @param mixed $var variable to be dumped
-     * @param integer $depth maximum depth that the dumper should go into the variable. Defaults to 10.
-     * @param boolean $highlight whether the result should be syntax-highlighted
-     * @return string the string representation of the variable
+     * Парсирует в строку переменную.
+     * Этот метод позволяет достичь аналогичного функциональность как var_dump и print_r
+     *
+     * @param mixed $var                Переменная, подлежащих дампу
+     * @param integer        $depth     Максимальная глубина, что даипер должен пройти в переменной.
+     *                                  По умолчанию 10.
+     * @param boolean|string $highlight Подсвечивать результат или установить класс тегам
+     * @return string Строковое представление переменной
      */
     public static function dumpAsString($var, $depth = 10, $highlight = false)
     {
@@ -61,10 +65,10 @@ class VarDumper
         if ($highlight) {
             $result = highlight_string("<?php\n" . self::$_output, true);
             $pattern = array( '/&lt;\\?php<br \\/>/', '/<code>/' );
-            $replace = array( '', '<code class="debug-cvardumper">' );
+            $replace = array( '', '<code class="debug-vardumper">' );
             $result = preg_replace($pattern, $replace, $result);
 
-            if ($highlight === 'css') {
+            if ($highlight === 'class') {
                 $pattern = array(
                     '/&lt;\\?php<br \\/>/',
                     '/<code>/',
@@ -77,7 +81,7 @@ class VarDumper
                 );
                 $replace = array(
                     '',                                 // for <?php
-                    '<code class="debug-cvardumper">',  // for <code>
+                    '<code class="debug-vardumper">',  // for <code>
                     'class="string"',                   // style="color:
                     'class="comment"',  // #888A85;
                     'class="keyword"',
