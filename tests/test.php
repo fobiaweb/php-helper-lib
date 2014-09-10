@@ -11,7 +11,7 @@
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-use Fobia\Helpers as fh;
+use Fobia\Helper as fh;
 
 $arr = array(1,2,3,4);
 
@@ -32,4 +32,4 @@ $r = fh\ak($arr, 'k4', array('k2', 'k3'));
 print_r($r);
 
 fh\dump($r);
-\Fobia\Helpers\VarDumper::dump($r);
+\Fobia\Helper\VarDumper::dump($r);

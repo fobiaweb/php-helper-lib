@@ -4,12 +4,12 @@
  * @copyright  Copyright (c) 2014 Dmitriy Tyurin
  */
 
-namespace Fobia\Helpers;
+namespace Fobia\Helper;
 
 /**
  * PHP callback encapsulation.
  *
- * @package Fobia.Helpers
+ * @package Fobia.Helper
  */
 final class Callback
 {
@@ -22,7 +22,7 @@ final class Callback
      *
      * @param  mixed   class, object, callable
      * @param  string  method
-     * @return \Fobia\Helpers\Callback
+     * @return \Fobia\Helper\Callback
      */
     public static function create($callback, $m = null)
     {

@@ -26,7 +26,7 @@ Please refer to [Composer's documentation](https://github.com/composer/composer/
 
 PHP обратного вызова инкапсуляции.
 
-    use Fobia\Helpers\Callback;
+    use Fobia\Helper\Callback;
 
     $_callback = function($a, $b) {
         echo $a . " = " . $b . "\n";
@@ -63,7 +63,7 @@ PHP обратного вызова инкапсуляции.
 
 Является вспомогательным классом, содержащий JavaScript-функции, связанные обработки.
 
-    use Fobia\Helpers\JavaScript;
+    use Fobia\Helper\JavaScript;
 
     $options = array('key1'=>true,'key2'=>123,'key3'=>'value');
     echo JavaScript::encode($options);
@@ -91,11 +91,11 @@ PHP обратного вызова инкапсуляции.
 
 Вывод на экран дамп переменой с подсветкой по умолчанию
     
-    Fobia\Helpers\VarDumper::dump($var);
+    Fobia\Helper\VarDumper::dump($var);
 
 Вывод на экран дамп переменой с подсветкой классами в тегах
 
-    Fobia\Helpers\VarDumper::dump($var, 10, 'class');
+    Fobia\Helper\VarDumper::dump($var, 10, 'class');
 
 Строковое представления дампа переменой без подсветки
 

@@ -7,9 +7,9 @@
     },
     "autoload": {
         "psr-0": {
-            "Fobia\\Helpers\\": "."
+            "Fobia\\Helper\\": "."
         },
         "files": [ "functions.php" ]
     },
-    "target-dir": "Fobia/Helpers"
+    "target-dir": "Fobia/Helper"
 }

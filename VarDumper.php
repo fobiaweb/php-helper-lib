@@ -8,7 +8,7 @@
  * @license http://www.yiiframework.com/license/
  */
 
-namespace Fobia\Helpers;
+namespace Fobia\Helper;
 
 /**
  * VarDumper призван заменить функцию var_dump и print_r.
@@ -18,12 +18,12 @@ namespace Fobia\Helpers;
  *
  * VarDumper может быть использован следующим образом,
  * <code>
- * Fobia\Helpers\VarDumper::dump($var);
- * Fobia\Helpers\VarDumper::dump($var, 10, 'class');
+ * Fobia\Helper\VarDumper::dump($var);
+ * Fobia\Helper\VarDumper::dump($var, 10, 'class');
  * $s = dumpAsString($var, 15);
  * </code>
  *
- * @package Fobia.Helpers
+ * @package Fobia.Helper
  */
 class VarDumper
 {

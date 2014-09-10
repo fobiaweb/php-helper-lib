@@ -49,7 +49,7 @@
  * @link		http://pear.php.net/pepr/pepr-proposal-show.php?id=198
  */
 
-namespace Fobia\Helpers;
+namespace Fobia\Helper;
 
 /**
  * JSON converts PHP data to and from JSON format.
@@ -58,7 +58,7 @@ namespace Fobia\Helpers;
  * @author	 Matt Knapp <mdknapp[at]gmail[dot]com>
  * @author	 Brett Stimmerman <brettstimmerman[at]gmail[dot]com>
  *
- * @package Fobia.Helpers
+ * @package Fobia.Helper
  */
 class JSON
 {

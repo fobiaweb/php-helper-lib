@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . '/../vendor/autoload.php';
-use Fobia\Helpers\JavaScript;
+use Fobia\Helper\JavaScript;
 
 $options = array('key1'=>true,'key2'=>123,'key3'=>'value');
 ?>

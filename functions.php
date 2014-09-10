@@ -6,7 +6,7 @@
  * @copyright  Copyright (c) 2014 Dmitriy Tyurin
  */
 
-namespace Fobia\Helpers;
+namespace Fobia\Helper;
 
 if (defined('FOBIA_COMMON_FILE')) {
     return;
@@ -86,7 +86,7 @@ function loadConfig($file, $type = null)
             $data = include $file;
             break;
         case 'json':
-            $data = \Fobia\Helpers\JSON::decode(file_get_contents($file));
+            $data = \Fobia\Helper\JSON::decode(file_get_contents($file));
             break;
         case 'ini':
         case 'conf':

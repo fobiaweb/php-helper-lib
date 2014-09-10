@@ -2,7 +2,7 @@
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-use Fobia\Helpers\DateTime;
+use Fobia\Helper\DateTime;
 
 $date = new DateTime('2000-12-31');
 echo $date . "\n" ; // '2000-12-31 00:00:00'

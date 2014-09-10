@@ -8,13 +8,13 @@
  * @license http://www.yiiframework.com/license/
  */
 
-namespace Fobia\Helpers;
+namespace Fobia\Helper;
 
 /**
  * JavaScript является вспомогательным классом, содержащий JavaScript-функции, связанные обработки.
  *
  * @author Qiang Xue <qiang.xue@gmail.com>
- * @package Fobia.Helpers
+ * @package Fobia.Helper
  */
 class JavaScript
 {
