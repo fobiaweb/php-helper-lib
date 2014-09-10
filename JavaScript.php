@@ -11,7 +11,7 @@
 namespace Fobia\Helpers;
 
 /**
- * CJavaScript is a helper class containing JavaScript-related handling functions.
+ * JavaScript is a helper class containing JavaScript-related handling functions.
  *
  * @author Qiang Xue <qiang.xue@gmail.com>
  * @package Fobia.Helpers

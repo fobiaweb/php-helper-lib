@@ -126,11 +126,12 @@ function print_pre($var)
 
 /**
  * dump var
- * @see $_ENV['dump.callback']
- * @param mixed $var1
- * @param mixed $var2...
  *
- * @return string
+ * @see $_ENV['dump.callback']
+ * @param mixed $value
+ * @param mixed $value2...
+ *
+ * @return void
  */
 function dump($value)
 {
@@ -140,41 +141,6 @@ function dump($value)
             call_user_func($_ENV["dump.callback"], $value);
         }
     }
-}
-
-
-/**
- * Вызвать исключение
- *
- * @param \Exception $exception
- * @throws \Exception
- */
-function throwException(\Exception $exception = null)
-{
-    if ($exception === null) {
-        $exception = new \Exception("Неизвестное исключение.");
-    }
-    throw $exception;
-}
-
-function callback($cb, $m = null)
-{
-    return new Callback($cb, $m);
-}
-
-/**
- * Устанавливает переменую или значение по умолчанию
- *
- * @param mixed $var
- * @param mixed $default
- * @return mixed
- */
-function getParam($var, $default = null)
-{
-    if (!$var) {
-        $var = $default;
-    }
-    return $var;
 }
 
 /**

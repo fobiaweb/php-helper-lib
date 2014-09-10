@@ -7,8 +7,7 @@
 
 ## Installation
 
-php-helper-lib can be installed with [Composer](http://getcomposer.org)
-by adding it as a dependency to your project's composer.json file.
+Can be installed with [Composer](http://getcomposer.org)
 
 ```json
 {
@@ -18,6 +17,32 @@ by adding it as a dependency to your project's composer.json file.
 }
 ```
 
-Please refer to [Composer's documentation](https://github.com/composer/composer/blob/master/doc/00-intro.md#introduction)
-for more detailed installation and usage instructions.
+Please refer to [Composer's documentation](https://github.com/composer/composer/blob/master/doc/00-intro.md#introduction) for more detailed installation and usage instructions.
+
+
+## Feature
+
+#### Callback
+
+PHP обратного вызова инкапсуляции.
+
+
+#### DateTime
+
+Дата и время с сериализацией и временных меток поддержкой PHP 5.2.
+
+
+#### JavaScript
+
+является вспомогательным классом, содержащий JavaScript-функции, связанные обработки.
+
+
+#### JSON
+
+предоставляет простой кодер и декодер для записи JSON.
+
+
+#### VarDumper
+
+призван заменить функцию `var_dump` и `print_r`
 
