@@ -106,7 +106,7 @@ class JSON
                 $var = str_replace(array('"', "\n"), array('\"', '\n'), $var);
                 return '"' . $var . '"';
             case 'object':
-                if ( ! ($var instanceof Traversable)) {
+                if ( ! ($var instanceof \Traversable)) {
                     $var = get_object_vars($var);
                 }
             case 'array':
