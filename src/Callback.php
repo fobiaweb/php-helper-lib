@@ -1,7 +1,7 @@
 <?php
 /**
  * @author     Dmitriy Tyurin <fobia3d@gmail.com>
- * @copyright  Copyright (c) 2014 Dmitriy Tyurin
+ * @copyright  Copyright (c) 2015 Dmitriy Tyurin
  */
 
 namespace Fobia\Helper;

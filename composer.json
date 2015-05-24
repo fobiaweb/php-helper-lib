@@ -6,6 +6,9 @@
     "require": {
         "php": ">=5.3.0"
     },
+    "suggest": {
+        "nesbot/carbon": "~1.14"
+    },
     "autoload": {
         "psr-4": {
             "Fobia\\Helper\\": "src/"

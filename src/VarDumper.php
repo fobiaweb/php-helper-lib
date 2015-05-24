@@ -69,31 +69,39 @@ class VarDumper
             $result = preg_replace($pattern, $replace, $result);
 
             if ($highlight === 'class') {
-                $pattern = array(
-                    '/&lt;\\?php<br \\/>/',
-                    '/<code>/',
-                    '/style="color: ' .  ini_get('highlight.string')   .'"/',
-                    '/style="color: ' .  ini_get('highlight.comment')  .'"/',
-                    '/style="color: ' .  ini_get('highlight.keyword')  .'"/',
-                    '/style="color: ' .  ini_get('highlight.bg')       .'"/',
-                    '/style="color: ' .  ini_get('highlight.default')  .'"/',
-                    '/style="color: ' .  ini_get('highlight.html')     .'"/',
-                );
-                $replace = array(
-                    '',                                 // for <?php
-                    '<code class="debug-vardumper">',  // for <code>
-                    'class="string"',                   // style="color:
-                    'class="comment"',  // #888A85;
-                    'class="keyword"',
-                    'class="bg"',
-                    'class="default"',
-                    'class="html"',
-                );
-                $result = preg_replace($pattern, $replace, $result);
+                $result = self::class_highlight($result);
             }
             self::$_output = $result;
         }
         return self::$_output;
+    }
+
+    protected static function class_highlight($text, $class = '')
+    {
+        static $pattern = null;
+        if ($pattern === null) {
+            $pattern = array(
+                '/&lt;\\?php<br \\/>/',
+                '/<code>/',
+                '/style="color: ' .  ini_get('highlight.string')   .'"/',
+                '/style="color: ' .  ini_get('highlight.comment')  .'"/',
+                '/style="color: ' .  ini_get('highlight.keyword')  .'"/',
+                '/style="color: ' .  ini_get('highlight.bg')       .'"/',
+                '/style="color: ' .  ini_get('highlight.default')  .'"/',
+                '/style="color: ' .  ini_get('highlight.html')     .'"/',
+            );
+        }
+        $replace = array(
+            '',                                 // for <?php
+            "<code class=\"{$class}debug-vardumper\">",  // for <code>
+            "class=\"{$class}string\"",                   // style="color:
+            "class=\"{$class}comment\"",  // #888A85;
+            "class=\"{$class}keyword\"",
+            "class=\"{$class}bg\"",
+            "class=\"{$class}default\"",
+            "class=\"{$class}html\"",
+        );
+        return preg_replace($pattern, $replace, $text);
     }
 
     /**
