@@ -106,7 +106,7 @@ class JavaScript
      * @param mixed $data the data to be encoded
      * @return string the JSON representation of the PHP data.
      */
-   private static function jsonEncode($data)
+   public static function jsonEncode($data)
    {
        return JSON::encode($data);
    }
@@ -118,7 +118,7 @@ class JavaScript
      * @param boolean $useArray whether to use associative array to represent object data
      * @return mixed the decoded PHP data
      */
-   private static function jsonDecode($data, $useArray = true)
+   public static function jsonDecode($data, $useArray = true)
    {
        return JSON::decode($data, $useArray);
    }

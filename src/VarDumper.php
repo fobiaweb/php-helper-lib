@@ -68,8 +68,8 @@ class VarDumper
             $replace = array( '', '<code class="debug-vardumper">' );
             $result = preg_replace($pattern, $replace, $result);
 
-            if ($highlight === 'class') {
-                $result = self::class_highlight($result);
+            if (is_string($highlight)) {
+                $result = self::class_highlight($result, $highlight);
             }
             self::$_output = $result;
         }
